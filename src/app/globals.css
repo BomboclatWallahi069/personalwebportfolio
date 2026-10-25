@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/* Design tokens — change these to re-theme the whole site */
+@theme {
+  --color-paper: #eef1f5;
+  --color-surface: #ffffff;
+  --color-ink: #172033;
+  --color-muted: #5b6576;
+  --color-line: #d3d9e2;
+  --color-select: #2f6bff; /* selection frame blue */
+  --color-redline: #e5366b; /* handoff spacing annotations */
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-select);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Hero: the one orchestrated motion moment — annotations draw in once */
+@keyframes measure-in {
+  from {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes frame-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.anim-frame {
+  animation: frame-in 500ms ease-out 150ms both;
+}
+
+.anim-measure {
+  animation: measure-in 600ms cubic-bezier(0.2, 0.7, 0.2, 1) 650ms both;
+}
+
+/* Hero guides draw across, then the role label and redline appear */
+@keyframes guide-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.anim-guide {
+  transform-origin: left;
+  animation: guide-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) 100ms both;
+}
+
+.anim-label {
+  animation: frame-in 400ms ease-out 700ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .anim-frame,
+  .anim-guide,
+  .anim-label,
+  .anim-measure {
+    animation: none;
+  }
+}
