@@ -35,11 +35,11 @@ function Line({ children, last }: { children: React.ReactNode; last?: boolean })
 
 export default function Hero() {
   return (
-    <section className="relative isolate overflow-x-clip">
+    <section className="relative isolate overflow-x-clip bg-linear-to-b from-tint-blue via-tint-blue/60 to-surface">
       {/* Figma-canvas dot grid, fading out toward the edges */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(rgb(23_32_51/0.14)_1px,transparent_1.2px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_65%_at_50%_45%,black_35%,transparent_100%)]"
+        className="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(rgb(47_107_255/0.22)_1px,transparent_1.2px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_65%_at_50%_45%,black_35%,transparent_100%)]"
       />
       <div className="mx-auto max-w-6xl px-4 pt-20 pb-24 text-center sm:px-8 sm:pt-28">
         <h1 className="flex flex-col gap-[0.32em] font-display text-[clamp(3.25rem,11vw,8.5rem)] leading-none font-bold tracking-[-0.035em]">
@@ -66,7 +66,7 @@ export default function Hero() {
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <a
             href="#work"
-            className="rounded-md bg-ink px-5 py-3 text-sm font-medium text-paper hover:bg-ink/85"
+            className="rounded-md bg-brand px-5 py-3 text-sm font-medium text-white shadow-sm shadow-brand/30 hover:bg-band"
           >
             See case studies
           </a>

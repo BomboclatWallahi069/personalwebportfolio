@@ -41,6 +41,8 @@ export type Project = {
   tags?: string[];
   year: string;
   cover?: { src: string; alt: string };
+  /** Project's own brand color, used only for the title hover on the home page */
+  accent?: string;
   /** Featured projects get a large row on the home page; the rest go in "More work" */
   featured?: boolean;
   /** Under NDA: listed on the home page, but no case study page */
@@ -60,6 +62,7 @@ const img = (
 export const projects: Project[] = [
   {
     slug: "gabaysakuna",
+    accent: "#0b7385",
     featured: true,
     title: "GabaySakuna",
     tagline:
@@ -69,7 +72,7 @@ export const projects: Project[] = [
     tags: ["UX research", "Design system", "Web + mobile", "Project lead"],
     year: "2025",
     cover: {
-      src: "/work/gabaysakuna/cover.webp",
+      src: "/work/gabaysakuna/cover-v2.webp",
       alt: "GabaySakuna homepage showing the live evacuation map of Legazpi City",
     },
     sections: [
@@ -154,6 +157,7 @@ export const projects: Project[] = [
   },
   {
     slug: "whimsy-game-cafe",
+    accent: "#5b3a86",
     featured: true,
     title: "Whimsy Game Cafe",
     tagline:
@@ -227,6 +231,7 @@ export const projects: Project[] = [
   },
   {
     slug: "trabawho",
+    accent: "#1769c7",
     featured: true,
     title: "TrabaWHO",
     tagline:
@@ -292,6 +297,7 @@ export const projects: Project[] = [
   },
   {
     slug: "bantay-bata-163",
+    accent: "#0055a5",
     title: "Bantay Bata 163 app",
     tagline: "A mobile app for donors and concerned citizens: donate, report a case, or call the hotline in a few taps.",
     role: "UI/UX Designer",
@@ -323,6 +329,7 @@ export const projects: Project[] = [
   },
   {
     slug: "onerepmax",
+    accent: "#8a6a00",
     title: "OneRepMax PH",
     tagline: "A landing page for a Filipino sports supplement brand.",
     role: "UI/UX Designer",
@@ -350,6 +357,7 @@ export const projects: Project[] = [
   },
   {
     slug: "headphones-product-page",
+    accent: "#1e3a8a",
     title: "Headphones product page",
     tagline: "An e-commerce product page for premium noise-cancelling headphones.",
     role: "UI/UX Designer",

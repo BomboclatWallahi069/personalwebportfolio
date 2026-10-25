@@ -20,7 +20,7 @@ export default function CopyEmail({ email }: { email: string }) {
     <button
       type="button"
       onClick={copy}
-      className="inline-flex w-fit items-center gap-2 rounded-md border border-paper/25 px-4 py-2.5 text-sm font-medium hover:border-paper"
+      className="inline-flex w-fit items-center gap-2 rounded-md border border-white/35 px-4 py-2.5 text-sm font-medium hover:border-white hover:bg-white/10"
     >
       <svg
         aria-hidden

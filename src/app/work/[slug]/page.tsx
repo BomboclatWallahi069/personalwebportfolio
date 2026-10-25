@@ -41,6 +41,7 @@ export default async function CaseStudy({ params }: Props) {
 
   const index = publicProjects.findIndex((p) => p.slug === slug);
   const next = publicProjects[(index + 1) % publicProjects.length];
+  const accent = "var(--color-brand)";
 
   return (
     <main className="mx-auto max-w-6xl px-4 pb-24 sm:px-8">
@@ -48,8 +49,11 @@ export default async function CaseStudy({ params }: Props) {
         All work
       </Link>
 
-      <header className="mt-10 border-b border-line pb-12">
-        <h1 className="font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] font-bold tracking-[-0.03em]">
+      <header className="mt-10 border-b-2 pb-12" style={{ borderColor: accent }}>
+        <h1
+          className="font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] font-bold tracking-[-0.03em]"
+          style={{ color: accent }}
+        >
           {project.title}
         </h1>
         <p className="mt-6 max-w-2xl text-xl leading-relaxed text-ink/85">{project.tagline}</p>
@@ -84,7 +88,9 @@ export default async function CaseStudy({ params }: Props) {
       <article className="mt-16 space-y-16">
         {project.sections.map((s) => (
           <section key={s.heading} className="grid gap-4 md:grid-cols-[14rem_1fr] md:gap-12">
-            <h2 className="font-display text-xl font-semibold tracking-tight">{s.heading}</h2>
+            <h2 className="font-display text-xl font-semibold tracking-tight" style={{ color: accent }}>
+              {s.heading}
+            </h2>
             <div className="min-w-0">
               <div className="max-w-prose space-y-4 text-lg leading-relaxed">
                 {s.body.map((para, i) => (

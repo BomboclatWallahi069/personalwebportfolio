@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { profile } from "@/content/profile";
 import { resume } from "@/content/resume";
+import Tag from "@/components/Tag";
 
 export const metadata: Metadata = {
-  title: `Résumé — ${profile.name}`,
+  title: `Resume — ${profile.name}`,
   description: resume.summary,
 };
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="grid gap-4 border-t border-line py-12 md:grid-cols-[14rem_1fr] md:gap-12">
-      <h2 className="font-display text-xl font-semibold tracking-tight">{title}</h2>
+      <h2 className="font-display text-xl font-semibold tracking-tight text-brand">{title}</h2>
       <div className="min-w-0 space-y-10">{children}</div>
     </section>
   );
@@ -20,7 +21,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function Points({ points }: { points: string[] }) {
   return (
-    <ul className="mt-4 max-w-prose list-disc space-y-2 pl-5 leading-relaxed marker:text-line">
+    <ul className="mt-4 max-w-prose list-disc space-y-2 pl-5 leading-relaxed marker:text-select">
       {points.map((p) => (
         <li key={p}>{p}</li>
       ))}
@@ -57,7 +58,7 @@ export default function ResumePage() {
       <header className="flex flex-col gap-8 pt-10 pb-12 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="font-display text-[clamp(2.5rem,7vw,5rem)] leading-[0.95] font-bold tracking-[-0.03em]">
-            Résumé
+            Resume
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/85">{resume.summary}</p>
         </div>
@@ -65,7 +66,7 @@ export default function ResumePage() {
           <a
             href={resume.pdf}
             download={resume.pdfDownloadName}
-            className="inline-flex items-center gap-2 rounded-md bg-ink px-5 py-3 text-sm font-medium text-paper hover:bg-ink/85"
+            className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-sm font-medium text-white shadow-sm shadow-brand/30 hover:bg-band"
           >
             <svg
               aria-hidden
@@ -124,9 +125,7 @@ export default function ResumePage() {
               <dt className="text-sm font-medium text-muted">{s.group}</dt>
               <dd className="mt-3 flex flex-wrap gap-2">
                 {s.items.map((i) => (
-                  <span key={i} className="rounded-full border border-line bg-surface px-3 py-1 text-sm">
-                    {i}
-                  </span>
+                  <Tag key={i} label={i} />
                 ))}
               </dd>
             </div>

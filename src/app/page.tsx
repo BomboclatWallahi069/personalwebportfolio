@@ -1,14 +1,17 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import ProjectCover from "@/components/ProjectCover";
 import CopyEmail from "@/components/CopyEmail";
+import Tag from "@/components/Tag";
 import { profile } from "@/content/profile";
 import { projects, type Project } from "@/content/projects";
 
 /** Shared section heading: large title, hairline below, optional note on the right */
 function SectionHeader({ title, note }: { title: string; note?: string }) {
   return (
-    <div className="flex items-end justify-between gap-6 border-b border-line pb-6">
+    <div className="relative flex items-end justify-between gap-6 border-b border-line pb-6">
+      <span aria-hidden className="absolute -bottom-px left-0 h-[3px] w-12 rounded-full bg-select" />
       <h2 className="font-display text-4xl font-semibold tracking-[-0.025em] sm:text-5xl">{title}</h2>
       {note && <p className="pb-1 text-sm text-muted tabular-nums">{note}</p>}
     </div>
@@ -20,8 +23,8 @@ function Tags({ tags }: { tags?: string[] }) {
   return (
     <ul className="flex flex-wrap gap-2" aria-label="What I did">
       {tags.map((t) => (
-        <li key={t} className="rounded-full border border-line bg-surface px-2.5 py-0.5 text-xs text-ink/80">
-          {t}
+        <li key={t}>
+          <Tag label={t} size="xs" />
         </li>
       ))}
     </ul>
@@ -40,11 +43,14 @@ function FeaturedRow({ p, flip }: { p: Project; flip: boolean }) {
           <ProjectCover project={p} />
         </div>
         <div className="md:col-span-5">
-          <h3 className="font-display text-3xl font-semibold tracking-[-0.02em] group-hover:text-select sm:text-4xl">
+          <h3
+            className="font-display text-3xl font-semibold tracking-[-0.02em] transition-colors group-hover:text-(--accent) sm:text-4xl"
+            style={{ "--accent": p.accent ?? "var(--color-brand)" } as CSSProperties}
+          >
             {p.title}
           </h3>
           <p className="mt-4 text-lg leading-relaxed text-ink/80">{p.tagline}</p>
-          <dl className="mt-8 grid grid-cols-2 gap-6 border-t border-line pt-6 text-sm">
+          <dl className="mt-8 grid grid-cols-2 gap-6 border-t-2 border-brand pt-6 text-sm">
             <div>
               <dt className="text-muted">Role</dt>
               <dd className="mt-1 leading-snug">{p.role}</dd>
@@ -57,7 +63,7 @@ function FeaturedRow({ p, flip }: { p: Project; flip: boolean }) {
           <div className="mt-6">
             <Tags tags={p.tags} />
           </div>
-          <span className="mt-8 inline-block text-sm font-medium underline decoration-line underline-offset-4 group-hover:decoration-ink">
+          <span className="mt-8 inline-block text-sm font-medium text-brand underline decoration-2 underline-offset-4">
             Read case study
           </span>
         </div>
@@ -73,9 +79,10 @@ function WorkCard({ p }: { p: Project }) {
       <ProjectCover project={p} />
       <div className="mt-6 flex items-baseline justify-between gap-4">
         <h4
-          className={`font-display text-xl font-semibold tracking-tight sm:text-2xl ${
-            p.confidential ? "" : "group-hover:text-select"
+          className={`font-display text-xl font-semibold tracking-tight transition-colors sm:text-2xl ${
+            p.confidential ? "" : "group-hover:text-(--accent)"
           }`}
+          style={{ "--accent": p.accent ?? "var(--color-brand)" } as CSSProperties}
         >
           {p.title}
         </h4>
@@ -117,6 +124,7 @@ export default function Home() {
     <main>
       <Hero />
 
+      <div className="bg-surface">
       <section id="work" className="mx-auto max-w-6xl scroll-mt-24 px-4 pt-16 pb-24 sm:px-8">
         <SectionHeader title="Selected work" note={`${projects.length} projects`} />
         <ul>
@@ -135,7 +143,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="mx-auto max-w-6xl scroll-mt-24 px-4 pt-16 pb-28 sm:px-8">
+      </div>
+
+      <div className="bg-tint-blue/60">
+      <section id="about" className="mx-auto max-w-6xl scroll-mt-24 px-4 pt-24 pb-28 sm:px-8">
         <SectionHeader title="About" />
         <div className="mt-12 grid gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-6">
@@ -149,8 +160,8 @@ export default function Home() {
               <h3 className="text-sm text-muted">Skills</h3>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {profile.skills.map((s) => (
-                  <li key={s} className="rounded-full border border-line bg-surface px-3 py-1 text-sm">
-                    {s}
+                  <li key={s}>
+                    <Tag label={s} />
                   </li>
                 ))}
               </ul>
@@ -196,33 +207,35 @@ export default function Home() {
         </div>
       </section>
 
+      </div>
+
       {/* Contact: a dark band that runs into the footer, so the page has a clear ending */}
-      <section id="contact" className="scroll-mt-16 bg-ink text-paper">
+      <section id="contact" className="scroll-mt-16 bg-night text-white">
         <div className="mx-auto max-w-6xl px-4 pt-24 pb-20 sm:px-8 sm:pt-32">
           <h2 className="font-display text-[clamp(2.25rem,6vw,4.5rem)] leading-none font-bold tracking-tight">
             Let&rsquo;s work together.
           </h2>
-          <p className="mt-6 max-w-xl text-lg text-paper/70">
+          <p className="mt-6 max-w-xl text-lg text-white/75">
             I&rsquo;m open to UI/UX design roles and freelance projects.
           </p>
           <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8">
             <a
               href={`mailto:${profile.email}`}
-              className="font-display text-[clamp(1.35rem,3.6vw,2.5rem)] font-semibold tracking-tight break-all underline decoration-paper/30 underline-offset-[0.2em] hover:decoration-paper"
+              className="font-display text-[clamp(1.35rem,3.6vw,2.5rem)] font-semibold tracking-tight break-all underline decoration-blue-400 underline-offset-[0.2em] hover:decoration-white"
             >
               {profile.email}
             </a>
             <CopyEmail email={profile.email} />
           </div>
-          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-paper/70">
+          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-white/75">
             {profile.linkedin && (
-              <a href={profile.linkedin} className="underline decoration-paper/30 underline-offset-4 hover:text-paper hover:decoration-paper">
+              <a href={profile.linkedin} className="underline decoration-blue-400 underline-offset-4 hover:text-white hover:decoration-white">
                 LinkedIn
               </a>
             )}
             {profile.resume && (
-              <a href={profile.resume} className="underline decoration-paper/30 underline-offset-4 hover:text-paper hover:decoration-paper">
-                Résumé (PDF)
+              <a href={profile.resume} className="underline decoration-blue-400 underline-offset-4 hover:text-white hover:decoration-white">
+                Resume (PDF)
               </a>
             )}
           </div>

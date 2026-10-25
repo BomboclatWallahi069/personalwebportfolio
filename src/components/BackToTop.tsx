@@ -29,7 +29,7 @@ export default function BackToTop() {
       onClick={scrollToTop}
       aria-label="Back to top"
       tabIndex={visible ? 0 : -1}
-      className={`fixed right-4 bottom-4 z-50 flex size-12 items-center justify-center rounded-md bg-ink text-paper ring-1 ring-paper/20 shadow-lg shadow-ink/15 transition-[opacity,translate] duration-300 hover:bg-ink/85 motion-reduce:transition-none sm:right-8 sm:bottom-8 ${
+      className={`fixed right-4 bottom-4 z-50 flex size-12 items-center justify-center rounded-md bg-brand text-white ring-1 ring-white/25 shadow-lg shadow-brand/25 transition-[opacity,translate] duration-300 hover:bg-band motion-reduce:transition-none sm:right-8 sm:bottom-8 ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-2 opacity-0"
       }`}
     >

@@ -2,13 +2,19 @@
 
 /* Design tokens — change these to re-theme the whole site */
 @theme {
-  --color-paper: #eef1f5;
+  /* Three colors only: black, blue, white (plus neutral grays between black and white) */
+  --color-paper: #ffffff;
   --color-surface: #ffffff;
-  --color-ink: #172033;
-  --color-muted: #5b6576;
-  --color-line: #d3d9e2;
+  --color-ink: #0a0a0a; /* black */
+  --color-muted: #5c5c66; /* gray text: 6.4:1 on white */
+  --color-line: #e3e3e8;
   --color-select: #2f6bff; /* selection frame blue */
-  --color-redline: #e5366b; /* handoff spacing annotations */
+  --color-redline: #0a0a0a; /* spacing marker */
+  --color-brand: #2457e0; /* buttons, links, tags: white text 5.97:1 */
+  --color-band: #1d3fbf; /* brand hover */
+  --color-night: #0a0a0a; /* navbar + contact band */
+  --color-night-deep: #000000; /* footer */
+  --color-tint-blue: #e8efff; /* hero wash, about band */
 
   --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;

@@ -1,5 +1,5 @@
 /**
- * Résumé content, from FALCULAN_RESUME_SEPT2026.pdf.
+ * Resume content, from FALCULAN_RESUME_SEPT2026.pdf.
  * Phone number and home address are left off the web page on purpose
  * (they're in the downloadable PDF in /public/resume.pdf).
  */
